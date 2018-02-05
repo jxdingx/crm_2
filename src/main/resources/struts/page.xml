@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="page" extends="struts-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="to_*" class="com.st.action.PageAction" method="toPage">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="success">WEB-INF/view/{1}.jsp</result>
+			<result name="error">WEB-INF/view/login.jsp</result>
+		</action>
+	</package>
+</struts>

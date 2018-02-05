@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.crmcheckbox {
+	width: 25px;
+	height: 25px;
+	vertical-align: middle;
+}
+
+.crmbuttonfont {
+	font-size: 13px;
+	color: black;
+}
+
+.ddddd {
+	width: 30px;
+	height: 30px;
+}

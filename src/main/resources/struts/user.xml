@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="user" extends="json-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="user_*" class="com.st.action.UserAction" method="{1}User">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="input" type="json"></result>
+		</action>
+		<action name="login" class="com.st.action.UserAction" method="login">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="input" type="json"></result>
+		</action>
+		<action name="creatImgCode" class="com.st.action.ImgCodeAction">
+			<result type="stream">
+				<param name="inputName" />
+				inputStream
+			</result>
+		</action>
+	</package>
+
+
+	<package name="saleChance" extends="json-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="saleChance_*" class="com.st.action.SaleChanceAction"
+			method="{1}saleChance">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="input" type="json"></result>
+		</action>
+	</package>
+</struts>
