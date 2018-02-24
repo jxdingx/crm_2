@@ -61,4 +61,10 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 		getHibernateTemplate().delete(user);
 	}
 
+	@Override
+	public UserEntity get(Integer id) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().get(UserEntity.class, id);
+	}
+
 }

@@ -30,4 +30,87 @@
 			<result name="input" type="json"></result>
 		</action>
 	</package>
+
+	<package name="cusDevPlan" extends="json-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="cusDevPlan_*" class="com.st.action.CusDevPlanAction"
+			method="{1}cusDevPlan">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="input" type="json"></result>
+		</action>
+	</package>
+
+	<package name="customer" extends="json-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="customer_*" class="com.st.action.CustomerAction"
+			method="{1}customer">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="input" type="json"></result>
+		</action>
+	</package>
+
+	<package name="dataDic" extends="json-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="dataDic_*" class="com.st.action.DataDicAction"
+			method="{1}dataDic">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="input" type="json"></result>
+		</action>
+	</package>
+
+	<package name="cusLinkMan" extends="json-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="cusLinkMan_*" class="com.st.action.CusLinkManAction"
+			method="{1}cusLinkMan">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="input" type="json"></result>
+		</action>
+	</package>
+
+	<package name="cusContact" extends="json-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="cusContact_*" class="com.st.action.CusContactAction"
+			method="{1}cusContact">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="input" type="json"></result>
+		</action>
+	</package>
+
+	<package name="cusOrder" extends="json-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="cusOrder_*" class="com.st.action.CusOrderAction"
+			method="{1}cusOrder">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="input" type="json"></result>
+		</action>
+	</package>
+
+	<package name="orderDetails" extends="json-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="orderDetails_*" class="com.st.action.OrderDetailsAction"
+			method="{1}orderDetails">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="input" type="json"></result>
+		</action>
+	</package>
+
+	<package name="cusLoss" extends="json-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="cusLoss_*" class="com.st.action.CusLossAction"
+			method="{1}cusLoss">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="input" type="json"></result>
+		</action>
+	</package>
+
+
+	<package name="cusService" extends="json-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="cusService_*" class="com.st.action.CusServiceAction"
+			method="{1}cusService">
+			<!-- //class名称必须和action即类名（）必须相同 -->
+			<result name="input" type="json"></result>
+		</action>
+	</package>
+
 </struts>

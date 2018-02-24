@@ -47,7 +47,7 @@
 		$('#Form').form("clear");
 		$('#win').window("open");
 	}
-	
+
 	function updateit(index) {
 		var row = $('#dg').datagrid('getData').rows[index];
 		$('#Form').form('load', row);
@@ -62,7 +62,7 @@
 			onSubmit : function() {
 				var isValid = $(this).form('validate');
 				if (!isValid) {
-					$.messager.alert('请填写完整表单!'); // 如果表单是无效的则隐藏进度条
+					$.messager.alert("操作提示", '请填写完整表单!', "info"); // 如果表单是无效的则隐藏进度条
 				}
 				return isValid; // 返回false终止表单提交
 			},

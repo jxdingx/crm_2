@@ -31,6 +31,8 @@ public class UserAction extends BaseAction { // 语句2
 	private String code;
 	private String result;
 
+	private String newpassword;
+
 	public String login() { // 方法名必须和 语句1 的跳转的action名称相同
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		String rightcode = (String) session.getAttribute("imgCode");
@@ -58,8 +60,6 @@ public class UserAction extends BaseAction { // 语句2
 		} else {
 			hql = " from UserEntity  where userName " + " like '%" + userName + "%' ";
 		}
-		// "from ssh_crm.t_user where userName like'%"+queryIsbn+"%' and b.title like
-		// '%"+queryTitle+"%'"
 		List<UserEntity> userList = userService.findAll(hql);
 		HtmlUtil.writerJson(getResponse(), userList);
 	}
@@ -68,6 +68,31 @@ public class UserAction extends BaseAction { // 语句2
 		UserEntity user = new UserEntity(id, userName, password, trueName, email, phone);
 		userService.update(user);
 		result = "ok";
+		return INPUT;
+	}
+
+	public void getManagerUser() {
+		String hql = " from UserEntity where roleName='客户经理' ";
+		List<UserEntity> userList = userService.findAll(hql);
+		HtmlUtil.writerJson(getResponse(), userList);
+	}
+
+	public String updatepasswordUser() {
+		String hql = " from UserEntity where id=" + id + " and password=" + password;
+		List<UserEntity> userList = userService.findAll(hql);
+		if (userList.size() != 1) {
+			result = "err";
+		} else {
+			UserEntity user = userService.get(id);
+			user.setPassword(newpassword);
+			userService.update(user);
+			result = "ok";
+		}
+		return INPUT;
+	}
+
+	public String exitUser() {
+		getRequest().getSession().removeAttribute("user");
 		return INPUT;
 	}
 
@@ -134,4 +159,13 @@ public class UserAction extends BaseAction { // 语句2
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	public String getNewpassword() {
+		return newpassword;
+	}
+
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
+	}
+
 }

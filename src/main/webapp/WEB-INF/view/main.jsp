@@ -33,6 +33,18 @@
 			}
 		//模态
 		});
+		$('#explain').window({
+			title : '密码修改',
+			width : 450,
+			height : 400,
+			closed : true,//初始时是关闭状态
+			cache : false,
+			modal : true,
+			doSize : true,
+			border : 'thin',
+			yIndex : 300,
+		//模态
+		});
 	});
 	function add(TitleText, src) {
 		if ($('#tt').tabs("exists", TitleText)) {
@@ -61,6 +73,67 @@
 			});
 		}
 	}
+	function explain() {
+		$('#explain').window("open");
+	}
+
+	function updatepassword() {
+		$('#win').window("open");
+		$("#Form").form("clear");
+		$("#userName").textbox("setValue", '${user.trueName}');
+	}
+
+	function closeFun() {
+		$("#win").window("close");
+	}
+
+	function submitFun() {
+		var newpass = $("#newpassword").passwordbox("getValue");
+		var renewpass = $("#renewpassword").passwordbox("getValue");
+		$('#Form').form({
+			url : "user_updatepassword.action",
+			onSubmit : function() {
+				var temp = $(this).form('validate');
+				if (!temp) {
+					$.messager.alert('提示', '请填写完整!', "error");
+				}
+				if (newpass != renewpass) {
+					$.messager.alert('提示', '两次密码不一致!', "error");
+					temp = false;
+				}
+				return temp;
+			},
+			queryParams : {
+				id : '${user.id}',
+				newpassword : newpass,
+			},
+			success : function(data) {
+				data = JSON.parse(data);
+				var result = data.result;
+				if (result == "ok") {
+					$.messager.alert("提示", "修改成功", "info");
+					closeFun();
+				} else if (result == "err") {
+					$.messager.alert("提示", "原密码错误", "error");
+				}
+			}
+		});
+		// submit the form    
+		$('#Form').submit();
+	}
+
+	function exit() {
+		$.ajax({
+			url : 'user_exit.action',
+			type : 'POST',
+			dataType : 'json', //返回的数据格式：json/xml/html/script/jsonp/text
+			success : function(data) {
+				if (data) {
+					window.location.href = "to_login.action";
+				}
+			},
+		});
+	}
 </script>
 </head>
 <body class="easyui-layout" id="layout">
@@ -86,12 +159,12 @@
 						&nbsp;&nbsp;
 						<strong style="font-size: 15px;">|</strong>
 						&nbsp;&nbsp;
-						<a class="main_a" style="margin-right: 20px;" href="/st-crm/user/exit.do">退出</a>
+						<a class="main_a" style="margin-right: 20px;" onclick="javascript:exit()">退出</a>
 					</p>
 					<span class="main_a" style="margin-right: 50px;">
 						&nbsp;&nbsp;
 						<strong>欢迎：</strong>
-						[ ]
+						[${user.trueName} ]
 					</span>
 				</td>
 			</tr>
@@ -100,20 +173,37 @@
 	<div data-options="region:'west',title:'菜单',split:true" style="width: 200px;">
 		<div class="easyui-accordion" data-options="border:false,height:350">
 			<div title="营销管理" data-options="selected:true,iconCls:'icon-yxgl'" style="padding: 10px">
-				<a href="javascript:add('营销机会管理','to_saleChanceManage')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-ok'">营销机会管理</a>
+				<a href="javascript:add('营销机会管理','to_saleChanceManage')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yxjhgl'">营销机会管理</a>
+				<br>
+				<a href="javascript:add('客户开发计划','to_cusdevplanManage')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khkfjh'">客户开发计划</a>
 				<br>
 			</div>
-			<div title="基础数据管理" data-options="selected:true,iconCls:'icon-yxgl'" style="padding: 10px">
+			<div title="客户管理" data-options="iconCls:'icon-khgl'" style="padding: 10px">
+				<a href="javascript:add('客户信息管理','to_customerManage')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khxxgl'">客户信息管理</a>
+				<br>
+				<a href="javascript:add('客户流失管理','to_customerLossManage')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khlsgl'">客户流失管理</a>
+				<br>
+			</div>
+			<div title="服务管理" data-options="iconCls:'icon-fwgl'" style="padding: 10px">
+				<a href="javascript:add('服务创建','to_customerServiceCreate')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-fwcj'">服务创建</a>
+				<br>
+				<a href="javascript:add('服务分配','to_customerServiceAssign')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-fwfp'">服务分配</a>
+				<br>
+				<a href="javascript:add('服务处理','to_customerServiceProce')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-fwcl'">服务处理</a>
+				<br>
+				<a href="javascript:add('服务反馈','to_customerServiceFeedback')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-fwfk'">服务反馈</a>
+				<br>
+				<a href="javascript:add('服务归档','to_customerServiceFile')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-fwgd'">服务归档</a>
+				<br>
+			</div>
+			<div title="系统管理" data-options="iconCls:'icon-jcsjgl'" style="padding: 10px">
 				<a href="javascript:add('用户信息管理','to_user')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-ok'">用户信息管理</a>
 				<br>
 			</div>
-			<div title="数据统计" data-options="iconCls:'icon-yxgl'" style="padding: 10px">
-				<a href="javascript:add('月度考核统计','adminAssessment.jsp')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-ok'">月度考核统计</a>
+
+			<div title="统计报表" data-options="iconCls:'icon-tjbb'" style="padding: 10px">
 				<br>
-			</div>
-			<div title="系统功能" data-options="iconCls:'icon-yxgl'" style="padding: 10px">
-				<a href="javascript:add('用户管理','adminUser.jsp')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-ok'">用户管理</a>
-				<br>
+				<a href="javascript:add('客户构成分析','to_khgcfx')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-ok'">客户构成分析</a>
 			</div>
 		</div>
 	</div>

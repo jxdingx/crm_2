@@ -50,4 +50,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.findAll(hql);
 	}
 
+	@Override
+	public UserEntity get(Integer id) {
+		// TODO Auto-generated method stub
+		return userDao.get(id);
+	}
+
 }

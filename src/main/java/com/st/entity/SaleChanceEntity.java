@@ -1,7 +1,5 @@
 package com.st.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,9 +23,9 @@ public class SaleChanceEntity {
 	private String linkPhone; // 联系电话
 	private String description; // 机会描述
 	private String createMan; // 创建人
-	private Date createTime; // 创建时间
+	private String createTime; // 创建时间
 	private String assignMan; // 指派人
-	private Date assignTime; // 指派时间
+	private String assignTime; // 指派时间
 	private Integer state; // 分配状态 0 未分配 1 已分配
 	private Integer devResult; // 客户开发状态 0 未开发 1 开发中 2 开发成功 3 开发失败
 
@@ -40,6 +38,26 @@ public class SaleChanceEntity {
 		this.id = id;
 		this.customerName = customerName;
 		this.overView = overView;
+	}
+
+	public SaleChanceEntity(Integer id, String chanceSource, String customerName, Integer cgjl, String overView,
+			String linkMan, String linkPhone, String description, String createMan, String createTime, String assignMan,
+			String assignTime, Integer state, Integer devResult) {
+		super();
+		this.id = id;
+		this.chanceSource = chanceSource;
+		this.customerName = customerName;
+		this.cgjl = cgjl;
+		this.overView = overView;
+		this.linkMan = linkMan;
+		this.linkPhone = linkPhone;
+		this.description = description;
+		this.createMan = createMan;
+		this.createTime = createTime;
+		this.assignMan = assignMan;
+		this.assignTime = assignTime;
+		this.state = state;
+		this.devResult = devResult;
 	}
 
 	public Integer getId() {
@@ -114,11 +132,11 @@ public class SaleChanceEntity {
 		this.createMan = createMan;
 	}
 
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
 
@@ -130,11 +148,11 @@ public class SaleChanceEntity {
 		this.assignMan = assignMan;
 	}
 
-	public Date getAssignTime() {
+	public String getAssignTime() {
 		return assignTime;
 	}
 
-	public void setAssignTime(Date assignTime) {
+	public void setAssignTime(String assignTime) {
 		this.assignTime = assignTime;
 	}
 

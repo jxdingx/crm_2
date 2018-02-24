@@ -64,4 +64,10 @@ public class SaleChanceDaoImpl extends BaseDaoImpl implements SaleChanceDao {
 		return (List<SaleChanceEntity>) getHibernateTemplate().find(hql);
 	}
 
+	@Override
+	public SaleChanceEntity get(Integer id) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().get(SaleChanceEntity.class, id);
+	}
+
 }

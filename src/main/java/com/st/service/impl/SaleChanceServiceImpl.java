@@ -50,4 +50,10 @@ public class SaleChanceServiceImpl implements SaleChanceService {
 		return saleChanceDao.findAll(hql);
 	}
 
+	@Override
+	public SaleChanceEntity get(Integer id) {
+		// TODO Auto-generated method stub
+		return saleChanceDao.get(id);
+	}
+
 }

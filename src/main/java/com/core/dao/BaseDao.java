@@ -14,4 +14,6 @@ public interface BaseDao<T> {
 	void update(T t);
 
 	void delete(T t);
+
+	T get(Integer id);
 }

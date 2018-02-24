@@ -3,6 +3,7 @@ package com.st.action;
 import java.io.ByteArrayInputStream;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.core.action.BaseAction;
@@ -15,6 +16,7 @@ import com.st.utils.ImgCodeUtil;
  * 
  */
 @Controller
+@Scope("prototype")
 public class ImgCodeAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +32,7 @@ public class ImgCodeAction extends BaseAction {
 		// 取得随机字符串放入HttpSession
 		session.setAttribute("imgCode", rdnu.getString());
 		// 设置当前session的有效时间为10*60秒
-		session.setMaxInactiveInterval(600);
+		// session.setMaxInactiveInterval(600);
 		return SUCCESS;
 	}
 
